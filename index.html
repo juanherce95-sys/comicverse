@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComicVerse</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:#0f172a;
+      color:white;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      background:#111827;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 8%;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    }
+
+    nav h1{
+      color:#facc15;
+      font-size:2rem;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:25px;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      transition:0.3s;
+      font-weight:bold;
+    }
+
+    nav a:hover{
+      color:#facc15;
+    }
+
+    /* HERO */
+
+    .hero{
+      height:90vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+      url('https://images.unsplash.com/photo-1531259683007-016a7b628fc3?q=80&w=1600&auto=format&fit=crop');
+
+      background-size:cover;
+      background-position:center;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+
+      padding:20px;
+    }
+
+    .hero-content{
+      max-width:800px;
+    }
+
+    .hero h2{
+      font-size:4rem;
+      margin-bottom:20px;
+      color:#facc15;
+    }
+
+    .hero p{
+      font-size:1.3rem;
+      margin-bottom:30px;
+      color:#e5e7eb;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:15px 30px;
+      background:#facc15;
+      color:black;
+      text-decoration:none;
+      border-radius:10px;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#fde047;
+      transform:scale(1.05);
+    }
+
+    /* SECCIONES */
+
+    section{
+      padding:80px 8%;
+    }
+
+    .titulo{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .titulo h2{
+      font-size:3rem;
+      color:#facc15;
+      margin-bottom:10px;
+    }
+
+    .titulo p{
+      color:#cbd5e1;
+    }
+
+    /* GRID */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    /* CARDS */
+
+    .card{
+      background:#1e293b;
+      border-radius:15px;
+      overflow:hidden;
+      transition:0.3s;
+      box-shadow:0 5px 20px rgba(0,0,0,0.4);
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .card img{
+      width:100%;
+      height:380px;
+      object-fit:cover;
+    }
+
+    .contenido{
+      padding:25px;
+    }
+
+    .contenido h3{
+      color:#facc15;
+      margin-bottom:15px;
+      font-size:1.6rem;
+    }
+
+    .contenido p{
+      color:#e2e8f0;
+      margin-bottom:20px;
+      line-height:1.6;
+    }
+
+    /* BANNER */
+
+    .banner{
+      background:#facc15;
+      color:black;
+      text-align:center;
+      padding:100px 20px;
+    }
+
+    .banner h2{
+      font-size:3rem;
+      margin-bottom:20px;
+    }
+
+    .banner p{
+      max-width:800px;
+      margin:auto;
+      font-size:1.2rem;
+    }
+
+    /* TABLA */
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#1e293b;
+      margin-top:40px;
+      overflow:hidden;
+      border-radius:10px;
+    }
+
+    table th{
+      background:#facc15;
+      color:black;
+    }
+
+    table th,
+    table td{
+      padding:18px;
+      border:1px solid rgba(255,255,255,0.1);
+      text-align:left;
+    }
+
+    /* FORM */
+
+    form{
+      max-width:700px;
+      margin:auto;
+      background:#1e293b;
+      padding:40px;
+      border-radius:15px;
+    }
+
+    form input,
+    form textarea{
+      width:100%;
+      padding:15px;
+      margin-bottom:20px;
+      border:none;
+      border-radius:10px;
+      font-size:1rem;
+    }
+
+    form button{
+      border:none;
+      cursor:pointer;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#111827;
+      padding:50px 8%;
+      margin-top:50px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    footer h3{
+      color:#facc15;
+      margin-bottom:15px;
+    }
+
+    footer p{
+      color:#cbd5e1;
+    }
+
+    .copyright{
+      text-align:center;
+      margin-top:40px;
+      border-top:1px solid rgba(255,255,255,0.1);
+      padding-top:20px;
+      color:#94a3b8;
+    }
+
+    /* CONTADOR */
+
+    #contador-online{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:#facc15;
+      color:black;
+      padding:15px 20px;
+      border-radius:12px;
+      font-weight:bold;
+      box-shadow:0 5px 15px rgba(0,0,0,0.4);
+      z-index:9999;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+      .hero h2{
+        font-size:2.5rem;
+      }
+
+      nav{
+        flex-direction:column;
+        gap:20px;
+      }
+
+      nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <h1>🦸 ComicVerse</h1>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#comics">Comics</a></li>
+      <li><a href="#heroes">Héroes</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="inicio">
+    <div class="hero-content">
+      <h2>El Universo De Los Comics</h2>
+      <p>Descubre héroes legendarios, historias épicas y los mejores comics del mundo.</p>
+      <a href="#comics" class="btn">Explorar Comics</a>
+    </div>
+  </header>
+
+  <!-- COMICS -->
+  <section id="comics">
+    <div class="titulo">
+      <h2>Comics Destacados</h2>
+      <p>Los más populares del momento</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?q=80&w=1200&auto=format&fit=crop">
+        <div class="contenido">
+          <h3>Spider-Man</h3>
+          <p>El héroe arácnido protege Nueva York.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?q=80&w=1200&auto=format&fit=crop">
+        <div class="contenido">
+          <h3>Batman</h3>
+          <p>El caballero oscuro de Gotham.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=1200&auto=format&fit=crop">
+        <div class="contenido">
+          <h3>Iron Man</h3>
+          <p>El genio de la armadura tecnológica.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <section class="banner">
+    <h2>Más de 10.000 Comics Disponibles</h2>
+    <p>Lee aventuras increíbles y descubre nuevos héroes.</p>
+  </section>
+
+  <!-- HEROES -->
+  <section id="heroes">
+    <div class="titulo">
+      <h2>Héroes Más Populares</h2>
+    </div>
+
+    <table>
+      <tr>
+        <th>Héroe</th>
+        <th>Universo</th>
+        <th>Popularidad</th>
+      </tr>
+      <tr>
+        <td>Spider-Man</td>
+        <td>Marvel</td>
+        <td>★★★★★</td>
+      </tr>
+      <tr>
+        <td>Batman</td>
+        <td>DC</td>
+        <td>★★★★★</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="titulo">
+      <h2>Contacto</h2>
+    </div>
+
+    <form>
+      <input type="text" placeholder="Tu Nombre">
+      <input type="email" placeholder="Tu Correo">
+      <textarea rows="5" placeholder="Mensaje"></textarea>
+      <button class="btn">Enviar</button>
+    </form>
+  </section>
+
+  <!-- CONTADOR -->
+  <div id="contador-online">
+    👥 Visitas: <span id="contador">...</span>
+  </div>
+
+  <script>
+    fetch('https://api.countapi.xyz/hit/comicverse2026/visitas')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('contador').innerText = data.value;
+      });
+  </script>
+
+</body>
+</html>
